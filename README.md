@@ -3,7 +3,7 @@
 ![GitHub Actions Build Status](https://img.shields.io/github/actions/workflow/status/Quasar-Continuation/Pulsar/dotnet.yml)
 [![Downloads](https://img.shields.io/github/downloads/Quasar-Continuation/Pulsar/total.svg)](https://github.com/Quasar-Continuation/Pulsar/releases)
 [![License](https://img.shields.io/github/license/Quasar-Continuation/Pulsar.svg)](LICENSE)
-![.NET](https://img.shields.io/badge/.NET-4.5.2%2B-blue)
+![.NET](https://img.shields.io/badge/.NET-4.7.2%2B-blue)
 ![Windows](https://img.shields.io/badge/OS-Windows-blue)
 
 > **A Free, Open-Source Remote Administration Tool for Windows**
@@ -31,8 +31,8 @@ Pulsar is a lightweight, fast, and powerful remote administration tool written i
 
 ## 📚 Need Help or Want to Offer Suggestions?
 
-Join our [Telegram channel](https://t.me/SomaliDevs) for updates, discussions, and support from the development team and community.
-
+Join our [Telegram channel](https://t.me/SomaliDevs) for updates, discussions, and support from the development team and community. \
+Or our  [Discord Channel](https://discord.gg/rKDJ6A78Yu)
 ---
 
 ## 📸 Screenshots
@@ -69,6 +69,10 @@ Join our [Telegram channel](https://t.me/SomaliDevs) for updates, discussions, a
 - 🛡️ **Built-in Obfuscator & Packer** — Protect your builds
 - 🛑 **Anti-VM / Anti-Debug** — Evade analysis environments
 - 🖼️ **Screen Corrupter / Illuminati** — Fun/experimental features
+- 📷 **Webcam Capture** — Capture images from remote webcams
+- 🎤 **Microphone Capture** — Record audio from remote microphones
+- 💬 **Chat** — Real-time chat with remote users
+- 📝 **Remote Script Execution** — Execute PowerShell, Batch, or custom scripts
 - **…and much more!**
 
 ---
@@ -158,6 +162,8 @@ Pulsar is licensed under the **[MIT](LICENSE)**. Third-party licenses are availa
 - **[Rishie](https://github.com/rishieissocool)** – Stealer Options
 - **[jungsuxx](https://github.com/jungsuxx)** – HVNC Input & Code Simplification
 - **[MOOM aka my lebron](https://github.com/moom825/)** – Inspiration & Batch Obfuscation
+- **[Poli](https://github.com/paulmaster59/)** - Discord Server & Custom Pulsar Crypter
+- **[Deadman](https://github.com/DeadmanLabs)** - Memory Dumping and Shellcode Builder
 
 ---
 

