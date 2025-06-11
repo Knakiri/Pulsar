@@ -43,22 +43,23 @@ namespace Pulsar.Server.Forms
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
-            Pulsar.Server.Utilities.ListViewColumnSorter listViewColumnSorter11 = new Pulsar.Server.Utilities.ListViewColumnSorter();
-            System.Windows.Forms.ListViewItem listViewItem7 = new System.Windows.Forms.ListViewItem("CPU");
-            System.Windows.Forms.ListViewItem listViewItem8 = new System.Windows.Forms.ListViewItem("GPU");
-            System.Windows.Forms.ListViewItem listViewItem9 = new System.Windows.Forms.ListViewItem("RAM");
-            System.Windows.Forms.ListViewItem listViewItem10 = new System.Windows.Forms.ListViewItem("Uptime");
-            System.Windows.Forms.ListViewItem listViewItem11 = new System.Windows.Forms.ListViewItem("Antivirus");
-            System.Windows.Forms.ListViewItem listViewItem12 = new System.Windows.Forms.ListViewItem("Default Browser");
             Pulsar.Server.Utilities.ListViewColumnSorter listViewColumnSorter1 = new Pulsar.Server.Utilities.ListViewColumnSorter();
-            Pulsar.Server.Utilities.ListViewColumnSorter listViewColumnSorter12 = new Pulsar.Server.Utilities.ListViewColumnSorter();
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("CPU");
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("GPU");
+            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("RAM");
+            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem("Uptime");
+            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem("Antivirus");
+            System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem("Default Browser");
+            System.Windows.Forms.ListViewItem listViewItem7 = new System.Windows.Forms.ListViewItem("Ping");
+            Pulsar.Server.Utilities.ListViewColumnSorter listViewColumnSorter2 = new Pulsar.Server.Utilities.ListViewColumnSorter();
             Pulsar.Server.Utilities.ListViewColumnSorter listViewColumnSorter3 = new Pulsar.Server.Utilities.ListViewColumnSorter();
             Pulsar.Server.Utilities.ListViewColumnSorter listViewColumnSorter4 = new Pulsar.Server.Utilities.ListViewColumnSorter();
-            Pulsar.Server.Utilities.ListViewColumnSorter listViewColumnSorter13 = new Pulsar.Server.Utilities.ListViewColumnSorter();
-            Pulsar.Server.Utilities.ListViewColumnSorter listViewColumnSorter14 = new Pulsar.Server.Utilities.ListViewColumnSorter();
-            Pulsar.Server.Utilities.ListViewColumnSorter listViewColumnSorter15 = new Pulsar.Server.Utilities.ListViewColumnSorter();
-            Pulsar.Server.Utilities.ListViewColumnSorter listViewColumnSorter16 = new Pulsar.Server.Utilities.ListViewColumnSorter();
-            Pulsar.Server.Utilities.ListViewColumnSorter listViewColumnSorter17 = new Pulsar.Server.Utilities.ListViewColumnSorter();
+            Pulsar.Server.Utilities.ListViewColumnSorter listViewColumnSorter5 = new Pulsar.Server.Utilities.ListViewColumnSorter();
+            Pulsar.Server.Utilities.ListViewColumnSorter listViewColumnSorter6 = new Pulsar.Server.Utilities.ListViewColumnSorter();
+            Pulsar.Server.Utilities.ListViewColumnSorter listViewColumnSorter7 = new Pulsar.Server.Utilities.ListViewColumnSorter();
+            Pulsar.Server.Utilities.ListViewColumnSorter listViewColumnSorter8 = new Pulsar.Server.Utilities.ListViewColumnSorter();
+            Pulsar.Server.Utilities.ListViewColumnSorter listViewColumnSorter9 = new Pulsar.Server.Utilities.ListViewColumnSorter();
+            Pulsar.Server.Utilities.ListViewColumnSorter listViewColumnSorter10 = new Pulsar.Server.Utilities.ListViewColumnSorter();
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.systemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.systemInformationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -113,6 +114,7 @@ namespace Pulsar.Server.Forms
             this.winREToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.installWinresetSurvivalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.removeWinresetSurvivalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.winRECustomFileForSurvivalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nicknameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.blockIPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.updateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -735,7 +737,8 @@ namespace Pulsar.Server.Forms
             // 
             this.winREToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.installWinresetSurvivalToolStripMenuItem,
-            this.removeWinresetSurvivalToolStripMenuItem});
+            this.removeWinresetSurvivalToolStripMenuItem,
+            this.winRECustomFileForSurvivalToolStripMenuItem});
             this.winREToolStripMenuItem.Image = global::Pulsar.Server.Properties.Resources.anchor;
             this.winREToolStripMenuItem.Name = "winREToolStripMenuItem";
             this.winREToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
@@ -743,17 +746,27 @@ namespace Pulsar.Server.Forms
             // 
             // installWinresetSurvivalToolStripMenuItem
             // 
+            this.installWinresetSurvivalToolStripMenuItem.Image = global::Pulsar.Server.Properties.Resources.anchor;
             this.installWinresetSurvivalToolStripMenuItem.Name = "installWinresetSurvivalToolStripMenuItem";
-            this.installWinresetSurvivalToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
+            this.installWinresetSurvivalToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
             this.installWinresetSurvivalToolStripMenuItem.Text = "Install Winreset Survival";
             this.installWinresetSurvivalToolStripMenuItem.Click += new System.EventHandler(this.installWinresetSurvivalToolStripMenuItem_Click);
             // 
             // removeWinresetSurvivalToolStripMenuItem
             // 
+            this.removeWinresetSurvivalToolStripMenuItem.Image = global::Pulsar.Server.Properties.Resources.anchor;
             this.removeWinresetSurvivalToolStripMenuItem.Name = "removeWinresetSurvivalToolStripMenuItem";
-            this.removeWinresetSurvivalToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
+            this.removeWinresetSurvivalToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
             this.removeWinresetSurvivalToolStripMenuItem.Text = "Remove Winreset Survival";
             this.removeWinresetSurvivalToolStripMenuItem.Click += new System.EventHandler(this.removeWinresetSurvivalToolStripMenuItem_Click);
+            // 
+            // winRECustomFileForSurvivalToolStripMenuItem
+            // 
+            this.winRECustomFileForSurvivalToolStripMenuItem.Image = global::Pulsar.Server.Properties.Resources.folder;
+            this.winRECustomFileForSurvivalToolStripMenuItem.Name = "winRECustomFileForSurvivalToolStripMenuItem";
+            this.winRECustomFileForSurvivalToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
+            this.winRECustomFileForSurvivalToolStripMenuItem.Text = "Custom file WinRE Survival";
+            this.winRECustomFileForSurvivalToolStripMenuItem.Click += new System.EventHandler(this.winRECustomFileForSurvivalToolStripMenuItem_Click);
             // 
             // nicknameToolStripMenuItem
             // 
@@ -1143,10 +1156,10 @@ namespace Pulsar.Server.Forms
             this.lstClients.FullRowSelect = true;
             this.lstClients.HideSelection = false;
             this.lstClients.Location = new System.Drawing.Point(0, 0);
-            listViewColumnSorter11.NeedNumberCompare = false;
-            listViewColumnSorter11.Order = System.Windows.Forms.SortOrder.None;
-            listViewColumnSorter11.SortColumn = 0;
-            this.lstClients.LvwColumnSorter = listViewColumnSorter11;
+            listViewColumnSorter1.NeedNumberCompare = false;
+            listViewColumnSorter1.Order = System.Windows.Forms.SortOrder.None;
+            listViewColumnSorter1.SortColumn = 0;
+            this.lstClients.LvwColumnSorter = listViewColumnSorter1;
             this.lstClients.Name = "lstClients";
             this.lstClients.ShowItemToolTips = true;
             this.lstClients.Size = new System.Drawing.Size(849, 351);
@@ -1387,17 +1400,18 @@ namespace Pulsar.Server.Forms
             this.clientInfoListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.clientInfoListView.HideSelection = false;
             this.clientInfoListView.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem7,
-            listViewItem8,
-            listViewItem9,
-            listViewItem10,
-            listViewItem11,
-            listViewItem12});
+            listViewItem1,
+            listViewItem2,
+            listViewItem3,
+            listViewItem4,
+            listViewItem5,
+            listViewItem6,
+            listViewItem7});
             this.clientInfoListView.Location = new System.Drawing.Point(3, 18);
-            listViewColumnSorter1.NeedNumberCompare = false;
-            listViewColumnSorter1.Order = System.Windows.Forms.SortOrder.None;
-            listViewColumnSorter1.SortColumn = 0;
-            this.clientInfoListView.LvwColumnSorter = listViewColumnSorter1;
+            listViewColumnSorter2.NeedNumberCompare = false;
+            listViewColumnSorter2.Order = System.Windows.Forms.SortOrder.None;
+            listViewColumnSorter2.SortColumn = 0;
+            this.clientInfoListView.LvwColumnSorter = listViewColumnSorter2;
             this.clientInfoListView.Name = "clientInfoListView";
             this.clientInfoListView.Size = new System.Drawing.Size(277, 116);
             this.clientInfoListView.TabIndex = 0;
@@ -1412,7 +1426,7 @@ namespace Pulsar.Server.Forms
             // Stats
             // 
             this.Stats.Text = "Stats";
-            this.Stats.Width = 151;
+            this.Stats.Width = 134;
             // 
             // splitter1
             // 
@@ -1500,10 +1514,10 @@ namespace Pulsar.Server.Forms
             this.lstNoti.FullRowSelect = true;
             this.lstNoti.HideSelection = false;
             this.lstNoti.Location = new System.Drawing.Point(0, 0);
-            listViewColumnSorter12.NeedNumberCompare = false;
-            listViewColumnSorter12.Order = System.Windows.Forms.SortOrder.None;
-            listViewColumnSorter12.SortColumn = 0;
-            this.lstNoti.LvwColumnSorter = listViewColumnSorter12;
+            listViewColumnSorter3.NeedNumberCompare = false;
+            listViewColumnSorter3.Order = System.Windows.Forms.SortOrder.None;
+            listViewColumnSorter3.SortColumn = 0;
+            this.lstNoti.LvwColumnSorter = listViewColumnSorter3;
             this.lstNoti.Margin = new System.Windows.Forms.Padding(0);
             this.lstNoti.Name = "lstNoti";
             this.lstNoti.ShowItemToolTips = true;
@@ -1795,10 +1809,10 @@ namespace Pulsar.Server.Forms
             this.lstTasks.FullRowSelect = true;
             this.lstTasks.HideSelection = false;
             this.lstTasks.Location = new System.Drawing.Point(0, 0);
-            listViewColumnSorter3.NeedNumberCompare = false;
-            listViewColumnSorter3.Order = System.Windows.Forms.SortOrder.None;
-            listViewColumnSorter3.SortColumn = 0;
-            this.lstTasks.LvwColumnSorter = listViewColumnSorter3;
+            listViewColumnSorter4.NeedNumberCompare = false;
+            listViewColumnSorter4.Order = System.Windows.Forms.SortOrder.None;
+            listViewColumnSorter4.SortColumn = 0;
+            this.lstTasks.LvwColumnSorter = listViewColumnSorter4;
             this.lstTasks.Margin = new System.Windows.Forms.Padding(0);
             this.lstTasks.Name = "lstTasks";
             this.lstTasks.ShowItemToolTips = true;
@@ -1911,7 +1925,7 @@ namespace Pulsar.Server.Forms
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage5.Size = new System.Drawing.Size(1136, 465);
             this.tabPage5.TabIndex = 4;
-            this.tabPage5.Text = "StealerSorter";
+            this.tabPage5.Text = "GathererSorter";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
             // splitter2
@@ -1961,10 +1975,10 @@ namespace Pulsar.Server.Forms
             this.aeroListView2.FullRowSelect = true;
             this.aeroListView2.HideSelection = false;
             this.aeroListView2.Location = new System.Drawing.Point(3, 3);
-            listViewColumnSorter4.NeedNumberCompare = false;
-            listViewColumnSorter4.Order = System.Windows.Forms.SortOrder.None;
-            listViewColumnSorter4.SortColumn = 0;
-            this.aeroListView2.LvwColumnSorter = listViewColumnSorter4;
+            listViewColumnSorter5.NeedNumberCompare = false;
+            listViewColumnSorter5.Order = System.Windows.Forms.SortOrder.None;
+            listViewColumnSorter5.SortColumn = 0;
+            this.aeroListView2.LvwColumnSorter = listViewColumnSorter5;
             this.aeroListView2.Name = "aeroListView2";
             this.aeroListView2.Size = new System.Drawing.Size(963, 423);
             this.aeroListView2.TabIndex = 0;
@@ -2006,10 +2020,10 @@ namespace Pulsar.Server.Forms
             this.aeroListView3.FullRowSelect = true;
             this.aeroListView3.HideSelection = false;
             this.aeroListView3.Location = new System.Drawing.Point(3, 3);
-            listViewColumnSorter13.NeedNumberCompare = false;
-            listViewColumnSorter13.Order = System.Windows.Forms.SortOrder.None;
-            listViewColumnSorter13.SortColumn = 0;
-            this.aeroListView3.LvwColumnSorter = listViewColumnSorter13;
+            listViewColumnSorter6.NeedNumberCompare = false;
+            listViewColumnSorter6.Order = System.Windows.Forms.SortOrder.None;
+            listViewColumnSorter6.SortColumn = 0;
+            this.aeroListView3.LvwColumnSorter = listViewColumnSorter6;
             this.aeroListView3.Name = "aeroListView3";
             this.aeroListView3.Size = new System.Drawing.Size(963, 423);
             this.aeroListView3.TabIndex = 1;
@@ -2046,10 +2060,10 @@ namespace Pulsar.Server.Forms
             this.aeroListView4.FullRowSelect = true;
             this.aeroListView4.HideSelection = false;
             this.aeroListView4.Location = new System.Drawing.Point(3, 3);
-            listViewColumnSorter14.NeedNumberCompare = false;
-            listViewColumnSorter14.Order = System.Windows.Forms.SortOrder.None;
-            listViewColumnSorter14.SortColumn = 0;
-            this.aeroListView4.LvwColumnSorter = listViewColumnSorter14;
+            listViewColumnSorter7.NeedNumberCompare = false;
+            listViewColumnSorter7.Order = System.Windows.Forms.SortOrder.None;
+            listViewColumnSorter7.SortColumn = 0;
+            this.aeroListView4.LvwColumnSorter = listViewColumnSorter7;
             this.aeroListView4.Name = "aeroListView4";
             this.aeroListView4.Size = new System.Drawing.Size(963, 423);
             this.aeroListView4.TabIndex = 2;
@@ -2085,10 +2099,10 @@ namespace Pulsar.Server.Forms
             this.aeroListView5.FullRowSelect = true;
             this.aeroListView5.HideSelection = false;
             this.aeroListView5.Location = new System.Drawing.Point(3, 3);
-            listViewColumnSorter15.NeedNumberCompare = false;
-            listViewColumnSorter15.Order = System.Windows.Forms.SortOrder.None;
-            listViewColumnSorter15.SortColumn = 0;
-            this.aeroListView5.LvwColumnSorter = listViewColumnSorter15;
+            listViewColumnSorter8.NeedNumberCompare = false;
+            listViewColumnSorter8.Order = System.Windows.Forms.SortOrder.None;
+            listViewColumnSorter8.SortColumn = 0;
+            this.aeroListView5.LvwColumnSorter = listViewColumnSorter8;
             this.aeroListView5.Name = "aeroListView5";
             this.aeroListView5.Size = new System.Drawing.Size(963, 423);
             this.aeroListView5.TabIndex = 0;
@@ -2119,10 +2133,10 @@ namespace Pulsar.Server.Forms
             this.aeroListView6.FullRowSelect = true;
             this.aeroListView6.HideSelection = false;
             this.aeroListView6.Location = new System.Drawing.Point(3, 3);
-            listViewColumnSorter16.NeedNumberCompare = false;
-            listViewColumnSorter16.Order = System.Windows.Forms.SortOrder.None;
-            listViewColumnSorter16.SortColumn = 0;
-            this.aeroListView6.LvwColumnSorter = listViewColumnSorter16;
+            listViewColumnSorter9.NeedNumberCompare = false;
+            listViewColumnSorter9.Order = System.Windows.Forms.SortOrder.None;
+            listViewColumnSorter9.SortColumn = 0;
+            this.aeroListView6.LvwColumnSorter = listViewColumnSorter9;
             this.aeroListView6.Name = "aeroListView6";
             this.aeroListView6.Size = new System.Drawing.Size(963, 423);
             this.aeroListView6.TabIndex = 1;
@@ -2152,10 +2166,10 @@ namespace Pulsar.Server.Forms
             this.aeroListView1.FullRowSelect = true;
             this.aeroListView1.HideSelection = false;
             this.aeroListView1.Location = new System.Drawing.Point(3, 3);
-            listViewColumnSorter17.NeedNumberCompare = false;
-            listViewColumnSorter17.Order = System.Windows.Forms.SortOrder.None;
-            listViewColumnSorter17.SortColumn = 0;
-            this.aeroListView1.LvwColumnSorter = listViewColumnSorter17;
+            listViewColumnSorter10.NeedNumberCompare = false;
+            listViewColumnSorter10.Order = System.Windows.Forms.SortOrder.None;
+            listViewColumnSorter10.SortColumn = 0;
+            this.aeroListView1.LvwColumnSorter = listViewColumnSorter10;
             this.aeroListView1.Name = "aeroListView1";
             this.aeroListView1.Size = new System.Drawing.Size(153, 459);
             this.aeroListView1.TabIndex = 0;
@@ -2521,5 +2535,6 @@ namespace Pulsar.Server.Forms
         private ToolStripMenuItem virtualMonitorToolStripMenuItem;
         private ToolStripMenuItem installVirtualMonitorToolStripMenuItem1;
         private ToolStripMenuItem uninstallVirtualMonitorToolStripMenuItem;
+        private ToolStripMenuItem winRECustomFileForSurvivalToolStripMenuItem;
     }
 }
